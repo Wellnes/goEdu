@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-	"unicode/utf8"
-)
+import "fmt"
 
 func chet(dataVal int) bool {
 
@@ -62,18 +58,33 @@ func main() {
 	// 	fmt.Println("НЕЧЁТНОЕ")
 	// }
 
-	var login, email string
-	fmt.Scan(&login, &email)
+	// var login, email string
+	// fmt.Scan(&login, &email)
 
-	const sobaka = "@"
-	const tochka = "."
+	// const sobaka = "@"
+	// const tochka = "."
 
-	if utf8.RuneCountInString(login) < 10 || strings.Contains(login, sobaka) {
-		fmt.Println("Некорректный логин")
-	} else if !(strings.Contains(email, sobaka) && strings.Contains(email, tochka)) {
-		fmt.Println("Некорректная почта")
+	// if utf8.RuneCountInString(login) < 10 || strings.Contains(login, sobaka) {
+	// 	fmt.Println("Некорректный логин")
+	// } else if !(strings.Contains(email, sobaka) && strings.Contains(email, tochka)) {
+	// 	fmt.Println("Некорректная почта")
+	// } else {
+	// 	fmt.Println("ОК")
+	// }
+
+	var x1, y1, x2, y2 uint8
+	fmt.Scan(&x1, &y1, &x2, &y2)
+
+	isX2GoodGorizont := (x2 == x1+2 || x2 == x1-2)
+	isY2GoodGorizont := (y2 == y1+1 || y2 == y1-1)
+
+	isX2GoodVertical := (x2 == x1+1 || x2 == x1-1)
+	isY2GoodVertical := (y2 == y1+2 || y2 == y1-2)
+
+	if (isX2GoodGorizont && isY2GoodGorizont) || (isX2GoodVertical && isY2GoodVertical) {
+		fmt.Println("ДА")
 	} else {
-		fmt.Println("ОК")
+		fmt.Println("НЕТ")
 	}
 
 }
