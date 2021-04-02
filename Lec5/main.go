@@ -1,18 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"unicode/utf8"
+)
 
-func chet(dataVal int) bool {
-
-	rez := false
-
-	if dataVal%2 == 0 {
-		rez = true
-	}
-
-	return rez
-
-}
+// func chet(dataVal int) bool {
+//
+// 	rez := false
+//
+// 	if dataVal%2 == 0 {
+// 		rez = true
+// 	}
+//
+// 	return rez
+//
+// }
 
 func main() {
 
@@ -72,19 +76,68 @@ func main() {
 	// 	fmt.Println("ОК")
 	// }
 
-	var x1, y1, x2, y2 uint8
-	fmt.Scan(&x1, &y1, &x2, &y2)
+	// var x1, y1, x2, y2 uint8
+	// fmt.Scan(&x1, &y1, &x2, &y2)
 
-	isX2GoodGorizont := (x2 == x1+2 || x2 == x1-2)
-	isY2GoodGorizont := (y2 == y1+1 || y2 == y1-1)
+	// isX2GoodGorizont := (x2 == x1+2 || x2 == x1-2)
+	// isY2GoodGorizont := (y2 == y1+1 || y2 == y1-1)
 
-	isX2GoodVertical := (x2 == x1+1 || x2 == x1-1)
-	isY2GoodVertical := (y2 == y1+2 || y2 == y1-2)
+	// isX2GoodVertical := (x2 == x1+1 || x2 == x1-1)
+	// isY2GoodVertical := (y2 == y1+2 || y2 == y1-2)
 
-	if (isX2GoodGorizont && isY2GoodGorizont) || (isX2GoodVertical && isY2GoodVertical) {
-		fmt.Println("ДА")
+	// if (isX2GoodGorizont && isY2GoodGorizont) || (isX2GoodVertical && isY2GoodVertical) {
+	// 	fmt.Println("ДА")
+	// } else {
+	// 	fmt.Println("НЕТ")
+	// }
+
+	// Инициализация в блоке условного оператора
+	// блок присваивания - только :=
+	// инициализируемая переменная видна только в области видимости условного оператора
+	// if data, err := SOME_FUNC(); err != nil {
+	//	}
+	// if num := 10; num%2 == 0 {
+	// 	fmt.Println("Четное")
+	// } else {
+	// 	fmt.Println("Не четное")
+	// }
+
+	// var userMassage string
+	// fmt.Scan(&userMassage)
+
+	// BOT := "чат"
+
+	// if strings.Contains(userMassage, BOT) {
+	// 	fmt.Println("БОТ")
+	// } else {
+	// 	fmt.Println("НЕ БОТ")
+	// }
+
+	// var raz, dva, tri string
+
+	// fmt.Scan(&raz, &dva, &tri)
+
+	// OK := "ОК"
+
+	// if (raz == "раз" || raz == "один") && dva == "два" && tri == "три" {
+	// 	fmt.Println(OK)
+	// } else if raz == "1" && dva == "2" && tri == "3" {
+	// 	fmt.Println(OK)
+	// } else {
+	// 	fmt.Println("НЕ ПРАВИЛЬНО")
+	// }
+
+	var textLogo string
+	fmt.Scan(&textLogo)
+
+	var cenaSymbol float64 = 0.23
+	sumLogo := float64(utf8.RuneCountInString(textLogo)) * cenaSymbol
+	rubPart := math.Floor(sumLogo)
+	copPart := (sumLogo - rubPart) * 100
+	if rubPart == 0 {
+		fmt.Printf("%.0f коп.\n", copPart)
 	} else {
-		fmt.Println("НЕТ")
+		fmt.Printf(" %.0f р. %.0f коп.\n", rubPart, copPart)
 	}
 
 }
