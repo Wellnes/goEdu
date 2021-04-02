@@ -137,7 +137,7 @@ func main() {
 	if rubPart == 0 {
 		fmt.Printf("%.0f коп.\n", copPart)
 	} else {
-		fmt.Printf(" %.0f р. %.0f коп.\n", rubPart, copPart)
+		fmt.Printf("%.0f р. %.0f коп.\n", rubPart, copPart)
 	}
 
 }
