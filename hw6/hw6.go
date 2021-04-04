@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"strings"
+	"unicode/utf8"
 )
 
 func main() {
@@ -17,16 +19,42 @@ func main() {
 	// }
 
 	// Задание D
-	var strVvod string
+	// 	var strVvod string
 
-mainfor:
+	// mainfor:
+	// 	for {
+	// 		strVvod = ""
+	// 		fmt.Scanln(&strVvod)
+	// 		if len(strVvod) == 0 {
+	// 			break mainfor
+	// 		} else {
+	// 			fmt.Println(strVvod)
+	// 		}
+
+	// 	}
+
+	//LOLKEK9000
+
+	var (
+		pass1, pass2             string
+		shortPass                int    = 8
+		simplePass1, simplePass2 string = "123", "qwe"
+	)
+
+passFor:
 	for {
-		strVvod = ""
-		fmt.Scanln(&strVvod)
-		if len(strVvod) == 0 {
-			break mainfor
+
+		fmt.Scan(&pass1, &pass2)
+
+		if utf8.RuneCountInString(pass1) < shortPass {
+			fmt.Println("Слишком короткий пароль!")
+		} else if strings.Contains(pass1, simplePass1) || strings.Contains(pass1, simplePass2) {
+			fmt.Println("Слишком простой пароль!")
+		} else if pass1 != pass2 {
+			fmt.Println("Введенные пароли различаются!")
 		} else {
-			fmt.Println(strVvod)
+			fmt.Println("Ну наконец-то!")
+			break passFor
 		}
 
 	}
