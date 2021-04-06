@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-	"unicode/utf8"
-)
+import "fmt"
 
 func main() {
 
@@ -35,28 +31,62 @@ func main() {
 
 	//LOLKEK9000
 
+	// 	var (
+	// 		pass1, pass2             string
+	// 		shortPass                int    = 8
+	// 		simplePass1, simplePass2 string = "123", "qwe"
+	// 	)
+
+	// passFor:
+	// 	for {
+
+	// 		fmt.Scan(&pass1, &pass2)
+
+	// 		if utf8.RuneCountInString(pass1) < shortPass {
+	// 			fmt.Println("Слишком короткий пароль!")
+	// 		} else if strings.Contains(pass1, simplePass1) || strings.Contains(pass1, simplePass2) {
+	// 			fmt.Println("Слишком простой пароль!")
+	// 		} else if pass1 != pass2 {
+	// 			fmt.Println("Введенные пароли различаются!")
+	// 		} else {
+	// 			fmt.Println("Ну наконец-то!")
+	// 			break passFor
+	// 		}
+
+	// 	}
+
+	// SPACE Y
 	var (
-		pass1, pass2             string
-		shortPass                int    = 8
-		simplePass1, simplePass2 string = "123", "qwe"
+		currentPulse, minPulse, maxPulse float32
+		candCount                        uint8
 	)
 
-passFor:
+pulseLoop:
 	for {
 
-		fmt.Scan(&pass1, &pass2)
+		fmt.Scan(&currentPulse)
 
-		if utf8.RuneCountInString(pass1) < shortPass {
-			fmt.Println("Слишком короткий пароль!")
-		} else if strings.Contains(pass1, simplePass1) || strings.Contains(pass1, simplePass2) {
-			fmt.Println("Слишком простой пароль!")
-		} else if pass1 != pass2 {
-			fmt.Println("Введенные пароли различаются!")
-		} else {
-			fmt.Println("Ну наконец-то!")
-			break passFor
+		if 100 <= currentPulse && currentPulse <= 140 {
+
+			candCount += 1
+
+			if candCount == 1 {
+				minPulse = currentPulse
+				maxPulse = currentPulse
+			} else {
+				if currentPulse < minPulse {
+					minPulse = currentPulse
+				} else if maxPulse < currentPulse {
+					maxPulse = currentPulse
+				}
+			}
+
+		} else if currentPulse < 0 {
+			break pulseLoop
 		}
-
 	}
+
+	fmt.Println(candCount)
+	fmt.Printf("%.1f %.1f\n", minPulse, maxPulse)
 
 }
